@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        ArahKita — Eksplorasi Potensi Mahasiswa
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         BACKGROUND
+    ========================================== -->
+
+    <div class="background">
+
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+
+    </div>
+
+
+
+    <!-- =========================================
+         HEADER
+    ========================================== -->
+
+    <header class="header">
+
+        <a
+            href="#"
+            class="brand"
+            onclick="showPage('welcome'); return false;"
+        >
+
+            <div class="brand-icon">
+                ✦
+            </div>
+
+            <div class="brand-text">
+
+                <strong>
+                    ArahKita
+                </strong>
+
+                <span>
+                    Eksplorasi Potensi Mahasiswa
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <div class="version">
+            V3 • NON-AI
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         MAIN
+    ========================================== -->
+
+    <main>
+
+
+
+        <!-- =====================================
+             HALAMAN PEMBUKA
+        ====================================== -->
+
+        <section
+            id="welcome"
+            class="page active"
+        >
+
+            <div class="hero card">
+
+                <div class="eyebrow">
+
+                    UNTUK MAHASISWA
+                    •
+                    LINTAS JURUSAN
+
+                </div>
+
+
+                <h1>
+
+                    Kenali potensimu,
+
+                    <span>
+                        temukan arahmu.
+                    </span>
+
+                </h1>
+
+
+                <p>
+
+                    Masukkan beberapa mata kuliah
+                    dan grade kamu, kemudian jawab
+                    beberapa pertanyaan sederhana
+                    tentang minat dan gaya kerja.
+
+                    <br><br>
+
+                    ArahKita akan membaca pola
+                    tersebut dan memberikan gambaran
+                    bidang, pekerjaan, serta skill
+                    yang bisa kamu eksplorasi.
+
+                </p>
+
+
+                <button
+                    class="btn primary"
+                    onclick="showPage('courses')"
+                >
+
+                    Mulai Eksplorasi
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+                <div class="info-note">
+
+                    ⚡ Tidak menggunakan AI,
+                    API, atau server.
+
+                    <br>
+
+                    Analisis dilakukan langsung
+                    di browser kamu.
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             INPUT MATA KULIAH
+        ====================================== -->
+
+        <section
+            id="courses"
+            class="page"
+        >
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="step">
+                        LANGKAH 01 / 03
+                    </span>
+
+                    <h2>
+                        Masukkan mata kuliah
+                    </h2>
+
+                    <p>
+                        Tambahkan mata kuliah
+                        beserta grade yang kamu dapatkan.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+
+                <!-- FORM -->
+
+                <div class="course-form">
+
+
+                    <div class="field large">
+
+                        <label>
+                            Nama Mata Kuliah
+                        </label>
+
+                        <input
+                            type="text"
+                            id="courseName"
+                            placeholder="Contoh: Basis Data"
+                        >
+
+                    </div>
+
+
+                    <div class="field">
+
+                        <label>
+                            Grade
+                        </label>
+
+                        <select id="courseGrade">
+
+                            <option value="">
+                                Pilih
+                            </option>
+
+                            <option value="A">
+                                A
+                            </option>
+
+                            <option value="A-">
+                                A-
+                            </option>
+
+                            <option value="B+">
+                                B+
+                            </option>
+
+                            <option value="B">
+                                B
+                            </option>
+
+                            <option value="B-">
+                                B-
+                            </option>
+
+                            <option value="C+">
+                                C+
+                            </option>
+
+                            <option value="C">
+                                C
+                            </option>
+
+                            <option value="D">
+                                D
+                            </option>
+
+                            <option value="E">
+                                E
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <button
+                        class="btn add"
+                        onclick="addCourse()"
+                    >
+
+                        + Tambah
+
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- PETUNJUK -->
+
+                <div class="hint">
+
+                    💡 Tambahkan sekitar
+                    <strong>5–10 mata kuliah</strong>
+                    yang menurutmu cukup menggambarkan
+                    kemampuanmu.
+
+                </div>
+
+
+
+                <!-- LIST MATKUL -->
+
+                <div
+                    id="courseList"
+                    class="course-list"
+                >
+
+                    <div class="empty">
+
+                        Belum ada mata kuliah.
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- NAVIGASI -->
+
+                <div class="actions">
+
+                    <button
+                        class="btn ghost"
+                        onclick="showPage('questions'); renderQuestion()"
+                    >
+
+                        Lewati
+
+                    </button>
+
+
+                    <button
+                        class="btn primary"
+                        onclick="showPage('questions'); renderQuestion()"
+                    >
+
+                        Lanjut
+
+                        <span>
+                            →
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             PERTANYAAN
+        ====================================== -->
+
+        <section
+            id="questions"
+            class="page"
+        >
+
+            <div class="section-heading question-heading">
+
+                <div>
+
+                    <span class="step">
+                        LANGKAH 02 / 03
+                    </span>
+
+                    <h2>
+                        Kenali dirimu
+                    </h2>
+
+                    <p>
+                        Pilih jawaban yang paling
+                        menggambarkan dirimu.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="questionCounter"
+                    class="counter"
+                >
+
+                    1 / 12
+
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+
+                <!-- PROGRESS -->
+
+                <div class="progress">
+
+                    <div
+                        id="questionProgress"
+                    ></div>
+
+                </div>
+
+
+
+                <!-- PERTANYAAN -->
+
+                <div
+                    id="questionContainer"
+                    class="question-container"
+                >
+
+                    <!-- Diisi JavaScript -->
+
+                </div>
+
+
+
+                <!-- NAVIGASI -->
+
+                <div class="actions">
+
+                    <button
+                        class="btn ghost"
+                        onclick="previousQuestion()"
+                    >
+
+                        ← Kembali
+
+                    </button>
+
+
+                    <button
+                        class="btn primary"
+                        onclick="nextQuestion()"
+                    >
+
+                        Berikutnya →
+
+                    </button>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             ANALISIS
+        ====================================== -->
+
+        <section
+            id="analysis"
+            class="page"
+        >
+
+            <div class="analysis card">
+
+                <div class="analysis-icon">
+
+                    ✦
+
+                </div>
+
+
+                <span class="step">
+
+                    ANALISIS POTENSI
+
+                </span>
+
+
+                <h2>
+
+                    Sedang membaca
+                    pola jawabanmu...
+
+                </h2>
+
+
+                <p>
+
+                    Sistem sedang mengolah
+                    data mata kuliah, grade,
+                    dan jawabanmu.
+
+                </p>
+
+
+                <div class="analysis-progress">
+
+                    <div
+                        id="analysisBar"
+                    ></div>
+
+                </div>
+
+
+                <span
+                    id="analysisPercent"
+                    class="percent"
+                >
+
+                    0%
+
+                </span>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================
+             HASIL
+        ====================================== -->
+
+        <section
+            id="result"
+            class="page"
+        >
+
+
+            <div class="result-heading">
+
+                <span class="step">
+                    LANGKAH 03 / 03
+                </span>
+
+                <h2>
+                    Hasil Eksplorasi
+                </h2>
+
+                <p>
+                    Berikut gambaran kecenderungan
+                    yang ditemukan dari jawabanmu.
+                </p>
+
+            </div>
+
+
+
+            <!-- GRID HASIL -->
+
+            <div class="result-grid">
+
+
+                <!-- PROFIL -->
+
+                <div class="card profile-card">
+
+                    <div class="result-icon">
+                        🎯
+                    </div>
+
+                    <span class="small-title">
+                        PROFIL UTAMA
+                    </span>
+
+
+                    <h2
+                        id="profileName"
+                    >
+                        —
+                    </h2>
+
+
+                    <p
+                        id="profileDescription"
+                    >
+                        —
+                    </p>
+
+
+                    <div
+                        id="profileDimensions"
+                        class="dimensions"
+                    >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- PEKERJAAN -->
+
+                <div class="card">
+
+                    <div class="result-icon">
+                        💼
+                    </div>
+
+                    <span class="small-title">
+                        BIDANG PEKERJAAN
+                    </span>
+
+
+                    <div
+                        id="careerList"
+                        class="career-list"
+                    >
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SKILL -->
+
+            <div class="card skill-card">
+
+                <div class="result-icon">
+                    📚
+                </div>
+
+                <span class="small-title">
+                    SKILL YANG BISA DIKEMBANGKAN
+                </span>
+
+
+                <div
+                    id="skillList"
+                    class="skills"
+                >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- MATKUL TERBACA -->
+
+            <div class="card">
+
+                <div class="result-icon">
+                    📖
+                </div>
+
+                <span class="small-title">
+                    RINGKASAN MATA KULIAH
+                </span>
+
+
+                <div
+                    id="courseSummary"
+                    class="course-summary"
+                >
+
+                </div>
+
+            </div>
+
+
+
+            <!-- CATATAN -->
+
+            <div class="card insight-card">
+
+                <div class="result-icon">
+                    💡
+                </div>
+
+                <span class="small-title">
+                    CATATAN UNTUKMU
+                </span>
+
+
+                <p
+                    id="resultInsight"
+                >
+
+                </p>
+
+            </div>
+
+
+
+            <!-- ULANG -->
+
+            <div class="restart">
+
+                <button
+                    class="btn ghost"
+                    onclick="restartApp()"
+                >
+
+                    ↻ Mulai Lagi
+
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================== -->
+
+    <footer>
+
+        <strong>
+            ArahKita
+        </strong>
+
+        <span>
+            • Kenali potensimu, temukan arahmu.
+        </span>
+
+    </footer>
+
+
+
+    <!-- JAVASCRIPT -->
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
